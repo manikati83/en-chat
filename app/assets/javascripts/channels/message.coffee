@@ -1,14 +1,18 @@
 App.message = App.cable.subscriptions.create "MessageChannel",
   connected: ->
     # Called when the subscription is ready for use on the server
+    user_name = $('[data-user]').attr('data-user')
+    sentence = '<p>' + user_name + '</p>'
+    $('#add-users').append(sentence);
 
   disconnected: ->
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-     user_name = document.getElementById('nickname').innerHTML
+     user_name = data["user"]
      current_user_id = localStorage.getItem('user_id')
      user_id = data["user_id"]
+     
      
      message = data["message"]
      message_en = ""
@@ -17,7 +21,7 @@ App.message = App.cable.subscriptions.create "MessageChannel",
      fromLang = 'ja'
      toLang = 'en'
      
-     URL = 'https://translation.googleapis.com/language/translate/v2?key=' + gon.api_key + '&q=' + encodeURI(message) + '&source=' + fromLang + '&target=' + toLang
+     URL = 'https://translation.googleapis.com/language/translate/v2?key=' + gon.qrw_dfeoxjhummk876r + '&q=' + encodeURI(message) + '&source=' + fromLang + '&target=' + toLang
      xhr = new XMLHttpRequest
      xhr.open 'POST', [ URL ], false
      xhr.send()
@@ -28,9 +32,9 @@ App.message = App.cable.subscriptions.create "MessageChannel",
      
      
      if current_user_id == user_id
-      sentence = '<div class="col-md-6"></div>
+      sentence = '<div class="row"><div class="col-md-6"></div>
       <div class="col-md-6"><p class="mb-0 pb-0" style="text-align: right; font-size: 20px;">' + message_en + '</p>
-      <p style="text-align: right; font-size: 12px;">' + message + '</p></div>'
+      <p style="text-align: right; font-size: 12px;">' + message + '</p></div></div>'
       $('#add-message').append(sentence);
      else
       sentence = '<div class="col-md-6">
@@ -39,6 +43,9 @@ App.message = App.cable.subscriptions.create "MessageChannel",
       </div>
       <div class="col-md-6"></div>'
       $('#add-message').append(sentence);
+     
+     list = document.getElementById('add-message')
+     list.scrollTo 0, list.scrollHeight
 
   speak: (message, user, user_id) ->
     @perform 'speak', {message: message, user: user, user_id: user_id}

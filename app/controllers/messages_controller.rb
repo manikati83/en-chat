@@ -5,6 +5,6 @@ class MessagesController < ApplicationController
     pool.save
     @pool = Pool.last
     
-    gon.api_key = ENV['API_KEY']
+    gon.qrw_dfeoxjhummk876r = ENV['API_KEY']
   end
 end
