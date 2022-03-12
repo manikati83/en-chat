@@ -1,16 +1,44 @@
 <div id="nickname" data-num="<%= @pool.id %>"></div>
 
+<div id="menu_btn" class="openbtn shadow-sm">
+    <h6><i class="fas fa-user-circle fa-2x"></i>Members</h6>
+</div>
+
+<div id="menu" class="SlideOut">
+  <ul id="user-list">
+    
+  </ul>
+</div>
+
 <div class="row">
-    <div id="add-users" class="col-md-2 rounded m-2">
-        <h3 class="text-center">User List</h3>
+    <div id="message-area" class="col-md-9 rounded">
+        <div id="add-message" class="rounded pr-3"></div>
+        <input id="btn" class="form-control mt-3" type="text" data-behavior="message_speaker" data-user_id=<%= @pool.id %> data-user=<%= @nickname %>>
     </div>
-    <div id="add-message" class="col-md-7 rounded m-2"></div>
     <div class="col-md-2"></div>
 </div>
 
 <div class="row">
     <div class="col-md-2 m-2"></div>
-    <input id="btn" class="form-control mt-3 col-md-7 m-2" type="text" data-behavior="message_speaker" data-user_id=<%= @pool.id %> data-user=<%= @nickname %>>
+    
     <div class="col-md-3"></div>
 </div>
 
+<script>
+    $('#menu_btn').on('click', function(){
+  SlideMenu()
+});
+
+// スライドメニュー関数
+const SlideMenu = () => {
+  if($('#menu').hasClass("SlideOut")){
+    // スライドメニューが非表示なら表示
+    $('#menu').removeClass('SlideOut');
+    $('#menu').addClass('SlideIN');
+  } else {
+    // スライドメニューがあれば非表示
+    $('#menu').removeClass('SlideIN');
+    $('#menu').addClass('SlideOut');
+  }
+}
+</script>
