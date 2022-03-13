@@ -6,39 +6,61 @@
 
 <div id="menu" class="SlideOut">
   <ul id="user-list">
-    
   </ul>
 </div>
 
 <div class="row">
     <div id="message-area" class="col-md-9 rounded">
         <div id="add-message" class="rounded pr-3"></div>
-        <input id="btn" class="form-control mt-3" type="text" data-behavior="message_speaker" data-user_id=<%= @pool.id %> data-user=<%= @nickname %>>
+        <input id="btn" class="form-control mt-3 mb-3" type="text" data-behavior="message_speaker" data-user_id=<%= @pool.id %> data-user=<%= @nickname %>>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-3">
+        <div id="search-box" class="rounded">
+          <div class="title text-center mt-3">
+            <h4 class="mt-3">単語翻訳</h4>
+          </div>
+          
+          <div class="form-group m-2 mt-3">
+            <label>英語</label>
+            <input type="search" class="form-control" id="en_text">
+          </div>
+          <div class="form-group m-2 mt-5">
+            <label>日本語</label>
+            <input type="text" class="form-control" id="ja_text">
+          </div>
+          <% if logged_in? %>
+            <%= form_with(model: @word, remote: true) do |f| %>
+              <%= hidden_field_tag :english, '英語です' %>
+              <%= hidden_field_tag :japanese, '日本語です' %>
+              <div class="m-2 mt-5">
+                <%= f.submit '保存', class: 'btn btn-success btn-block' %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-2 m-2"></div>
-    
-    <div class="col-md-3"></div>
-</div>
+
+
+
+
 
 <script>
     $('#menu_btn').on('click', function(){
-  SlideMenu()
-});
-
-// スライドメニュー関数
-const SlideMenu = () => {
-  if($('#menu').hasClass("SlideOut")){
-    // スライドメニューが非表示なら表示
-    $('#menu').removeClass('SlideOut');
-    $('#menu').addClass('SlideIN');
-  } else {
-    // スライドメニューがあれば非表示
-    $('#menu').removeClass('SlideIN');
-    $('#menu').addClass('SlideOut');
-  }
-}
+      SlideMenu()
+    });
+    
+    // スライドメニュー関数
+    const SlideMenu = () => {
+      if($('#menu').hasClass("SlideOut")){
+        // スライドメニューが非表示なら表示
+        $('#menu').removeClass('SlideOut');
+        $('#menu').addClass('SlideIN');
+      } else {
+        // スライドメニューがあれば非表示
+        $('#menu').removeClass('SlideIN');
+        $('#menu').addClass('SlideOut');
+      }
+    }
 </script>

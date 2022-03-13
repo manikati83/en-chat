@@ -2,58 +2,52 @@ App.message = App.cable.subscriptions.create "MessageChannel",
   connected: ->
     # Called when the subscription is ready for use on the server
     user_name = $('[data-user]').attr('data-user')
-    sentence = '<li>' + user_name + '</li>'
-    $('#user-list').append(sentence);
+    user_id = localStorage.getItem('user_id')
+    @perform 'come_in', {user: user_name}
 
   disconnected: ->
     # Called when the subscription has been terminated by the server
-
   received: (data) ->
-     user_name = data["user"]
-     current_user_id = localStorage.getItem('user_id')
-     user_id = data["user_id"]
-     
-     
-     message = data["message"]
-     message_en = ""
-     
-     
-     fromLang = 'ja'
-     toLang = 'en'
-     
-     URL = 'https://translation.googleapis.com/language/translate/v2?key=' + gon.qrw_dfeoxjhummk876r + '&q=' + encodeURI(message) + '&source=' + fromLang + '&target=' + toLang
-     xhr = new XMLHttpRequest
-     xhr.open 'POST', [ URL ], false
-     xhr.send()
-     if xhr.status == 200
-       res = JSON.parse(xhr.responseText)
-       message_en =  res['data']['translations'][0]['translatedText']
-
-     
-     
-     if current_user_id == user_id
-      sentence = '<div class="row"><div class="col-md-6"></div>
-      <div class="col-md-6"><p class="mb-0 pb-0" style="text-align: right; font-size: 20px;">' + message_en + '</p>
-      <p style="text-align: right; font-size: 12px;">' + message + '</p></div></div>'
-      
-      test = '<div class="mymessage"><div class="messages"><p class="message message-en">' + message_en + '</p><p class="message message-ja">' + message + '</p></div></div>'
-      
-      $('#add-message').append(test);
+     if data["come_user"]
+         user_name = data["come_user"]
+         sentence = '<li>' + user_name + '</li>'
+         $('#user-list').append(sentence);
      else
-      sentence = '<div class="col-md-6">
-      <p class="mb-0 pb-0">' + message_en + '</p>
-      <p>' + message + '</p>
-      </div>
-      <div class="col-md-6"></div>'
-      
-      test = '<div class="balloon6"><div class="user-name"><p>' + user_name + '</p></div><div class="chatting"><div class="says"><div class="messages-other">
-      <p class="message message-en">' + message_en + '</p><p class="message message-ja">' + message + '</p></div>
-      </div></div></div>'
-      
-      $('#add-message').append(test);
-     
-     list = document.getElementById('add-message')
-     list.scrollTo 0, list.scrollHeight
+         user_name = data["user"]
+         current_user_id = localStorage.getItem('user_id')
+         user_id = data["user_id"]
+         
+         
+         message = data["message"]
+         message_en = ""
+         
+         
+         fromLang = 'ja'
+         toLang = 'en'
+         
+         URL = 'https://translation.googleapis.com/language/translate/v2?key=' + gon.qrw_dfeoxjhummk876r + '&q=' + encodeURI(message) + '&source=' + fromLang + '&target=' + toLang
+         xhr = new XMLHttpRequest
+         xhr.open 'POST', [ URL ], false
+         xhr.send()
+         if xhr.status == 200
+           res = JSON.parse(xhr.responseText)
+           message_en =  res['data']['translations'][0]['translatedText']
+    
+         
+         
+         if current_user_id == user_id
+          sentence = '<div class="mymessage"><div class="messages"><p class="message message-en">' + message_en + '</p><p class="message message-ja">' + message + '</p></div></div>'
+          
+          $('#add-message').append(sentence);
+         else
+          sentence = '<div class="balloon6"><div class="user-name"><p>' + user_name + '</p></div><div class="chatting"><div class="says"><div class="messages-other">
+          <p class="message message-en">' + message_en + '</p><p class="message message-ja">' + message + '</p></div>
+          </div></div></div>'
+          
+          $('#add-message').append(sentence);
+         
+         list = document.getElementById('add-message')
+         list.scrollTo 0, list.scrollHeight
 
   speak: (message, user, user_id) ->
     @perform 'speak', {message: message, user: user, user_id: user_id}

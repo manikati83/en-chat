@@ -1,7 +1,9 @@
 class MessageChannel < ApplicationCable::Channel
-  def subscribed
+  
+  def subscribed()
     #接続
     stream_from "message_channel"
+    
   end
 
   def unsubscribed
@@ -11,5 +13,9 @@ class MessageChannel < ApplicationCable::Channel
 
   def speak(message)
     ActionCable.server.broadcast 'message_channel', message: message['message'], user: message['user'], user_id: message['user_id']
+  end
+  
+  def come_in(user)
+    ActionCable.server.broadcast 'message_channel', come_user: user['user']
   end
 end
