@@ -6,13 +6,16 @@
 
 <div id="menu" class="SlideOut">
   <ul id="user-list">
+    <% @pools.each do |pool| %>
+      <li><%= pool.name %></li>
+    <% end %>
   </ul>
 </div>
 
 <div class="row">
     <div id="message-area" class="col-md-9 rounded">
         <div id="add-message" class="rounded pr-3"></div>
-        <input id="btn" class="form-control mt-3 mb-3" type="text" data-behavior="message_speaker" data-user_id=<%= @pool.id %> data-user=<%= @nickname %>>
+        <input id="btn" class="form-control mt-3 mb-3" type="text" data-behavior="message_speaker" data-user_id=<%= @pool.id %> data-user=<%= @pool.name %>>
     </div>
     <div class="col-md-3">
         <div id="search-box" class="rounded">

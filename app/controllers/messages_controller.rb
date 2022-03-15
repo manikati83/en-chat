@@ -1,7 +1,8 @@
 class MessagesController < ApplicationController
   def index
+    @pools = Pool.all
     @nickname = params[:nickname]
-    pool = Pool.new
+    pool = Pool.create(name: @nickname)
     pool.save
     @pool = Pool.last
     

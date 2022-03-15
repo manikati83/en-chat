@@ -3,15 +3,17 @@ App.message = App.cable.subscriptions.create "MessageChannel",
     # Called when the subscription is ready for use on the server
     user_name = $('[data-user]').attr('data-user')
     user_id = localStorage.getItem('user_id')
-    @perform 'come_in', {user: user_name}
+    @perform 'come_in', {user: user_name, user_id: user_id}
 
   disconnected: ->
     # Called when the subscription has been terminated by the server
+    
   received: (data) ->
      if data["come_user"]
-         user_name = data["come_user"]
-         sentence = '<li>' + user_name + '</li>'
-         $('#user-list').append(sentence);
+         if data["come_user_id"] != localStorage.getItem('user_id')
+             user_name = data["come_user"]
+             sentence = '<li>' + user_name + '</li>'
+             $('#user-list').append(sentence);
      else
          user_name = data["user"]
          current_user_id = localStorage.getItem('user_id')
@@ -51,6 +53,9 @@ App.message = App.cable.subscriptions.create "MessageChannel",
 
   speak: (message, user, user_id) ->
     @perform 'speak', {message: message, user: user, user_id: user_id}
+    
+  out_user: (user_id) ->
+    @perform 'exit_room', {user_id: user_id}
 
 $(document).on 'keypress', '[data-behavior~=message_speaker]', (event) ->
   # return(Enter)が押された時
@@ -60,3 +65,11 @@ $(document).on 'keypress', '[data-behavior~=message_speaker]', (event) ->
     # inputの中身を空に
     event.target.value = ''
     event.preventDefault()
+    
+    
+window.onbeforeunload = ->
+　#ページを離れる際にPoolテーブルからデータを削除
+  user_id = localStorage.getItem('user_id')
+  App.message.out_user(user_id)
+  App.message.unsubscribe()
+  return

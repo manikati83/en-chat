@@ -24,3 +24,4 @@ $(document).on 'keypress', '[id~=en_text]', (event) ->
     document.getElementById('ja_text').value = japanese
     document.getElementById('english').value = english
     document.getElementById('japanese').value = japanese
+    

@@ -3,10 +3,9 @@ class MessageChannel < ApplicationCable::Channel
   def subscribed()
     #接続
     stream_from "message_channel"
-    
   end
 
-  def unsubscribed
+  def unsubscribed()
     #切断
     # Any cleanup needed when channel is unsubscribed
   end
@@ -16,6 +15,11 @@ class MessageChannel < ApplicationCable::Channel
   end
   
   def come_in(user)
-    ActionCable.server.broadcast 'message_channel', come_user: user['user']
+    ActionCable.server.broadcast 'message_channel', come_user: user['user'], come_user_id: user['user_id']
+  end
+  
+  def exit_room(user)
+    pool = Pool.find(user['user_id'].to_i)
+    pool.destroy()
   end
 end
