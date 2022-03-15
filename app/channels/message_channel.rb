@@ -19,7 +19,9 @@ class MessageChannel < ApplicationCable::Channel
   end
   
   def exit_room(user)
-    pool = Pool.find(user['user_id'].to_i)
-    pool.destroy()
+    pool = Pool.find_by(user['user_id'].to_i)
+    unless pool.nil?
+      pool.destroy()
+    end
   end
 end
