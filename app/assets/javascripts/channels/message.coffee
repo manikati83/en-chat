@@ -4,6 +4,7 @@ App.message = App.cable.subscriptions.create "MessageChannel",
     user_name = $('[data-user]').attr('data-user')
     user_id = localStorage.getItem('user_id')
     @perform 'come_in', {user: user_name, user_id: user_id}
+    
 
   disconnected: ->
     # Called when the subscription has been terminated by the server
@@ -54,8 +55,6 @@ App.message = App.cable.subscriptions.create "MessageChannel",
   speak: (message, user, user_id) ->
     @perform 'speak', {message: message, user: user, user_id: user_id}
     
-  out_user: (user_id) ->
-    @perform 'exit_room', {user_id: user_id}
 
 $(document).on 'keypress', '[data-behavior~=message_speaker]', (event) ->
   # return(Enter)が押された時
@@ -69,7 +68,5 @@ $(document).on 'keypress', '[data-behavior~=message_speaker]', (event) ->
     
 window.onbeforeunload = ->
 　#ページを離れる際にPoolテーブルからデータを削除
-  user_id = localStorage.getItem('user_id')
-  App.message.out_user(user_id)
-  App.message.unsubscribe()
+  
   return

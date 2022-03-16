@@ -1,10 +1,11 @@
 class MessagesController < ApplicationController
   def index
-    @pools = Pool.all
     @nickname = params[:nickname]
     pool = Pool.create(name: @nickname)
     pool.save
     @pool = Pool.last
+    
+    cookies[:user_id] = @pool.id
     
     gon.qrw_dfeoxjhummk876r = ENV['API_KEY']
     
