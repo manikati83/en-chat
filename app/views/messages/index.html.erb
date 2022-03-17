@@ -7,7 +7,7 @@
 <div id="menu" class="SlideOut">
   <ul id="user-list">
     <% @pools.each do |pool| %>
-      <li data-user-id="<%= pool.id %>"><%= pool.name %></li>
+      <li id="<%= pool.id %>"><%= pool.name %></li>
     <% end %>
   </ul>
 </div>

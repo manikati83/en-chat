@@ -13,10 +13,11 @@ App.message = App.cable.subscriptions.create "MessageChannel",
      if data["come_user"]
          if data["come_user_id"] != localStorage.getItem('user_id')
              user_name = data["come_user"]
-             sentence = '<li data-user-id=' + data["come_user_id"] + '>' + user_name + '</li>'
+             sentence = '<li id=' + data["come_user_id"] + '>' + user_name + '</li>'
              $('#user-list').append(sentence);
      else if data["out_user"]
-         console.log("Out User!!!")
+         out_user = document.getElementById(data["out_user_id"])
+         out_user.remove()
          
      else
          user_name = data["user"]
