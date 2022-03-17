@@ -12,6 +12,7 @@ class MessageChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
     member = Pool.where(id: current_user.id).first
     member.destroy()
+    ActionCable.server.broadcast 'message_channel', out_user: user['user'], out_user_id: user['user_id']
   end
 
   def speak(message)
