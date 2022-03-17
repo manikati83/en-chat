@@ -10,7 +10,7 @@ class MessageChannel < ApplicationCable::Channel
   def unsubscribed()
     #切断
     # Any cleanup needed when channel is unsubscribed
-    # ActionCable.server.broadcast 'message_channel', out_user: current_user.name, out_user_id: current_user.id
+    ActionCable.server.broadcast 'message_channel', out_user: current_user.name, out_user_id: current_user.id
     member = Pool.where(id: current_user.id).first
     member.destroy()
   end

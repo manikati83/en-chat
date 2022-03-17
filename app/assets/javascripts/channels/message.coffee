@@ -10,13 +10,13 @@ App.message = App.cable.subscriptions.create "MessageChannel",
     # Called when the subscription has been terminated by the server
     
   received: (data) ->
-     console.log("Test out user!")
      if data["come_user"]
          if data["come_user_id"] != localStorage.getItem('user_id')
              user_name = data["come_user"]
              sentence = '<li data-user-id=' + data["come_user_id"] + '>' + user_name + '</li>'
              $('#user-list').append(sentence);
      else if data["out_user"]
+         console.log("Out User!!!")
          out_user = document.getElementById('user-list').querySelectorAll('[data-user-id="' + data[out_user_id] + '"]')
          out_user.remove()
      else
