@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
   
   
   def index
-    @pools = Pool.all
+    @pools = Pool.where(online: true)
     @pool = Pool.find_by(id: cookies.signed[:user_id])
     
     if logged_in?

@@ -1,10 +1,6 @@
 App.message = App.cable.subscriptions.create "MessageChannel",
   connected: ->
     # Called when the subscription is ready for use on the server
-    #user_name = $('[data-user]').attr('data-user')
-    #user_id = localStorage.getItem('user_id')
-    #@perform 'come_in', {user: user_name, user_id: user_id}
-    
 
   disconnected: ->
     # Called when the subscription has been terminated by the server
