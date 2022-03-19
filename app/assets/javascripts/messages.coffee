@@ -1,6 +1,4 @@
 
-
-
 $(document).on 'keypress', '[id~=en_text]', (event) ->
   if event.keyCode is 13
     english = document.getElementById('en_text').value

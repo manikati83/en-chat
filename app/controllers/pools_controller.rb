@@ -4,13 +4,18 @@ class PoolsController < ApplicationController
   end
 
   def create
-    @pool = Pool.new(pool_params)
-    if @pool.save
-      cookies.signed[:user_id] = @pool.id
+    if cookies.signed[:user_id]
+      @pool = Pool.find_by(id: cookies.signed[:user_id])
       redirect_to chat_path
     else
-      flash.now[:danger] = '入室できませんでした。'
-      render :new
+      @pool = Pool.new(pool_params)
+      if @pool.save
+        cookies.signed[:user_id] = @pool.id
+        redirect_to chat_path
+      else
+        flash.now[:danger] = '入室できませんでした。'
+        render :new
+      end
     end
   end
   
