@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   
   get 'signup', to: 'users#new'
   
+  resources :pools, only: [:new, :create]
   resources :users, only: [:show, :create]
   resources :words, only: [:create, :destroy]
 end

@@ -1,9 +1,9 @@
 App.message = App.cable.subscriptions.create "MessageChannel",
   connected: ->
     # Called when the subscription is ready for use on the server
-    user_name = $('[data-user]').attr('data-user')
-    user_id = localStorage.getItem('user_id')
-    @perform 'come_in', {user: user_name, user_id: user_id}
+    #user_name = $('[data-user]').attr('data-user')
+    #user_id = localStorage.getItem('user_id')
+    #@perform 'come_in', {user: user_name, user_id: user_id}
     
 
   disconnected: ->
@@ -11,7 +11,7 @@ App.message = App.cable.subscriptions.create "MessageChannel",
     
   received: (data) ->
      if data["come_user"]
-         if data["come_user_id"] != localStorage.getItem('user_id')
+         if data["come_user_id"] != document.getElementById('nickname').getAttribute('data-num')
              user_name = data["come_user"]
              sentence = '<li id=' + data["come_user_id"] + '>' + user_name + '</li>'
              $('#user-list').append(sentence);
@@ -70,7 +70,3 @@ $(document).on 'keypress', '[data-behavior~=message_speaker]', (event) ->
     event.preventDefault()
     
     
-window.onbeforeunload = ->
-　#ページを離れる際にPoolテーブルからデータを削除
-  
-  return

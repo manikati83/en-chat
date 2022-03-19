@@ -8,7 +8,7 @@ module ApplicationCable
 
     private
       def find_verified_user
-        if verified_user = Pool.find_by(id: cookies[:user_id])
+        if verified_user = Pool.find_by(id: cookies.signed[:user_id])
           verified_user
         else
           reject_unauthorized_connection

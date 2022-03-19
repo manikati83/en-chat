@@ -1,0 +1,5 @@
+<%= form_with(model: @pool, local: true) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+  <%= f.label :name, 'ニックネーム' %>
+  <%= f.text_field :name %>
+<% end %>
