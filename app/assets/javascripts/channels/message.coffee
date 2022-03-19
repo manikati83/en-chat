@@ -10,8 +10,9 @@ App.message = App.cable.subscriptions.create "MessageChannel",
     # Called when the subscription has been terminated by the server
     
   received: (data) ->
+     current_user_id = document.getElementById('nickname').getAttribute('data-num')
      if data["come_user"]
-         if data["come_user_id"] != document.getElementById('nickname').getAttribute('data-num')
+         if data["come_user_id"] != current_user_id
              user_name = data["come_user"]
              sentence = '<li id=' + data["come_user_id"] + '>' + user_name + '</li>'
              $('#user-list').append(sentence);
@@ -21,7 +22,6 @@ App.message = App.cable.subscriptions.create "MessageChannel",
          
      else
          user_name = data["user"]
-         current_user_id = localStorage.getItem('user_id')
          user_id = data["user_id"]
          
          
