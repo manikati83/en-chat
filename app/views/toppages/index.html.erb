@@ -1,3 +1,16 @@
-<h1>対訳チャット</h1>
+<div class="text-center">
+  <h1 class="display-4 p-3">En-chat</h1>
+  
+  <div class="col-sm-4 offset-sm-4">
+    <%= form_with(model: @pool, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="cp-iptxt form-group mb-2 pb-3">
+        <%= f.label :name, 'ニックネーム', class: "text-dark" %>
+        <%= f.text_field :name, value: @name, class: "ef form-control" %>
+        <span class="focus_bg"></span>
+      </div>
+      <%= f.submit 'チャットルームへ', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
 
-<%= link_to 'チャット画面へ', new_pool_path %>

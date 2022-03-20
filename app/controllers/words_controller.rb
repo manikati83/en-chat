@@ -6,7 +6,7 @@ class WordsController < ApplicationController
     @word_book.english = params[:english]
     @word_book.japanese = params[:japanese]
     if @word_book.save
-      flash.now[:success] = "単語帳に保存しました。"
+      
     else
       render chat_path
     end

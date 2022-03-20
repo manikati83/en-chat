@@ -1,0 +1,19 @@
+<table>
+  <tr class="">
+    <th class="title">英単語</th>
+    <th class="title">日本語訳
+      <div>
+        <a id="all-open" class="btn mt-2">全て表示する</a>
+      </div>
+    </th>
+  </tr>
+  <% words.each do |word| %>
+    <tr>
+      <th><%= word.english %></th>
+      <th class="japanese"><a id="<%= word.id %>" data-trans="<%= word.japanese %>" class="open btn btn-block">表示する</a></th>
+    </tr>
+  <% end %>
+</table>
+<%= paginate words %>
+
+ 

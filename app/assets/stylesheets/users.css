@@ -1,0 +1,40 @@
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  background-color: #F0F8FF;
+}
+
+table tr{
+  border-bottom: solid 1px #eee;
+  cursor: pointer;
+}
+
+table .title{
+  background-color: #FFDEAD;
+}
+
+table tr:hover{
+  background-color: #d4f0fd;
+}
+
+table th,table td{
+  text-align: center;
+  width: 25%;
+  padding: 15px 0;
+}
+
+table #all-open{
+  background-color: #FFC0CB;
+  padding: 5px 5px;
+}
+
+table .open{
+  padding: 15px 0px;
+  color: #333333;
+}
+
+table .open:hover{
+  background-color: #FFB6C1;
+}
+

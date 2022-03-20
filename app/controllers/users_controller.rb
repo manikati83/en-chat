@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @words = @user.words.order(id: :desc).page(params[:page]).per(15)
+    @count = @user.words.count
   end
 
   def new

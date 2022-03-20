@@ -1,0 +1,22 @@
+const flashMessage = document.createElement('div');
+  flashMessage.setAttribute('class', 'flash-message alert alert-success')
+  flashMessage.setAttribute('id', 'flash-message')
+  flashMessage.setAttribute("style", `top: ${window.scrollY}px; animation-name: flash-message-fade;` );
+  flashMessage.innerHTML = "単語帳に保存しました!!"
+
+const body = document.getElementById("added-message");
+  body.prepend(flashMessage)
+
+document.addEventListener('scroll', function(){
+  flashMessage.style.top = `${window.scrollY}px`
+})
+
+window.setTimeout(function(){
+  flashMessage.remove();
+}, 4000);
+
+en_form = document.getElementById("english");
+en_form.value = '';
+ja_form = document.getElementById("japanese");
+ja_form.value = '';
+

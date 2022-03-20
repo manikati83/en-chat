@@ -1,3 +1,4 @@
+
 /* チャット画面 */
 #message-area{
   width: 100%;
@@ -124,6 +125,9 @@
   font-size: 10px;
 }
 
+.come-message{
+  font-size: 20px;
+}
 
 
 /* 単語検索画面 */
@@ -142,6 +146,12 @@
   border-radius: 3px;
 }
 
+.fa-language {
+  margin: 5px 5px 0 10px;
+  vertical-align: middle;
+  color: #FFF5EE;
+}
+
 .form-group{
   margin: 15px 0;
 }
@@ -149,6 +159,8 @@
 .word-save{
   margin: 15px auto;
 }
+
+
 
 
 /*スライドメニューcss */
@@ -273,3 +285,4 @@ main {
   color: #FFF5EE;
   
 }
+
