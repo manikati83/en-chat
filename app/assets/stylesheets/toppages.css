@@ -3,4 +3,22 @@ h1{
   font-family: Comic Sans MS;
 }
 
+h1 img{
+  max-width: 10%;
+}
 
+#entire{
+  max-width: 100%
+}
+
+#contents{
+  background-color: #666699;
+}
+
+.contents p{
+  color: #FFF;
+  font-family: Helvetica;
+  font-size: 20px;
+  letter-spacing: 0.15em;
+  line-height: 2em;
+}

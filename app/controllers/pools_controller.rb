@@ -21,8 +21,8 @@ class PoolsController < ApplicationController
         cookies.signed[:user_id] = @pool.id
         redirect_to chat_path
       else
-        flash.now[:danger] = '入室できませんでした。'
-        render :new
+        flash[:danger] = 'ニックネームを入力してください。'
+        redirect_to root_path
       end
     end
   end

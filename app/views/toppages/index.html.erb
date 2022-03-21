@@ -1,5 +1,7 @@
-<div class="text-center">
-  <h1 class="display-4 p-3">En-chat</h1>
+<div id="top" class="text-center">
+  <div class="col-lg-12">
+  <h1 class="display-4 p-3 mr-3">En-chat<img src="images/icon.png"></h1>
+  </div>
   
   <div class="col-sm-4 offset-sm-4">
     <%= form_with(model: @pool, local: true) do |f| %>
@@ -12,5 +14,13 @@
       <%= f.submit 'チャットルームへ', class: 'btn btn-success' %>
     <% end %>
   </div>
+  <div id="contents" class="row mt-5 mb-5 m-3 pt-3 pb-3 text-left">
+    <div class="col-lg-8 image">
+      <img id="entire" src="/images/app-img2.png">
+    </div>
+    <div class="col-lg-4 contents">
+      <p>En-chatでは日本語で入力されたメッセージが英語に翻訳され、英語と日本語の対訳で表示されます。</br>
+      チャットをしながら楽しく英語を学習しましょう！</p>
+    </div>
+  </div>
 </div>
-
