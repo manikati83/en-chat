@@ -1,26 +1,61 @@
-<div id="top" class="text-center">
-  <div class="col-lg-12">
-  <h1 class="display-4 p-3 mr-3">En-chat<img src="images/icon.png"></h1>
-  </div>
-  
-  <div class="col-sm-4 offset-sm-4">
-    <%= form_with(model: @pool, local: true) do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
-      <div class="cp-iptxt form-group mb-2 pb-3">
-        <%= f.label :name, 'ニックネーム', class: "text-dark" %>
-        <%= f.text_field :name, value: @name, class: "ef form-control" %>
-        <span class="focus_bg"></span>
-      </div>
-      <%= f.submit 'チャットルームへ', class: 'btn btn-success' %>
-    <% end %>
-  </div>
-  <div id="contents" class="row mt-5 mb-5 m-3 pt-3 pb-3 text-left">
-    <div class="col-lg-8 image">
-      <img id="entire" src="/images/app-img2.png">
+<div class="container">
+  <div id="index" class="text-center">
+    <div class="col-lg-12">
+    <h1 class="display-4 p-3 mr-3">En-chat<img src="images/icon.png"></h1>
+    <p>現在のチャットメンバー<%= @members %>人</p>
     </div>
-    <div class="col-lg-4 contents">
-      <p>En-chatでは日本語で入力されたメッセージが英語に翻訳され、英語と日本語の対訳で表示されます。</br>
-      チャットをしながら楽しく英語を学習しましょう！</p>
+    
+    <div class="col-sm-4 offset-sm-4">
+      <%= form_with(model: @pool, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+        <div class="cp-iptxt form-group mb-2 pb-3">
+          <%= f.label :name, 'ニックネーム', class: "text-dark" %>
+          <%= f.text_field :name, value: @name, class: "ef form-control" %>
+          <span class="focus_bg"></span>
+        </div>
+        <%= f.submit 'チャットルームへ', class: 'btn btn-success' %>
+      <% end %>
+    </div>
+    <div id="contents" class="row mt-5 mb-5 m-3 pt-3 pb-3 text-left rounded">
+      <div class="row pb-5 border-bottom chat-image">
+        <div class="col-md-12 text-center mt-5 mb-5">
+          <h2 class="text-white">対訳形式で表示されるチャット</h2>
+        </div>
+        <div class="col-lg-8 image">
+          <img id="entire" src="/images/app-img2.png">
+        </div>
+        <div class="col-lg-4 contents">
+          <p>En-chatでは日本語で入力されたメッセージが英語に翻訳され、英語と日本語の対訳で表示されます。</br>
+          チャットをしながら楽しく英語を学習しましょう！</p>
+        </div>
+      </div>
+      
+      <div class="row mt-5">
+        <div class="col-md-12 mb-5">
+          <h2 class="text-center text-white">翻訳機能</h2>
+        </div>
+        <div class="col-md-3">
+          <img id="entire2" src="images/trans.png">
+        </div>
+        <div class="col-md-3">
+          <h3 class="text-white mb-3">すぐに翻訳</h3>
+          <p>チャット画面右側に画像のような翻訳機能があります。</br>
+          チャットの中で分からない単語・フレーズを入力すればすぐに意味を調べることができます。</p>
+          <h3 class="text-white mb-3">単語保存機能</h3>
+          <p>ログインすることで保存ボタンを押せば英単語と意味を単語帳に保存することができます。</p>
+        </div>
+        <div class="col-md-3">
+          <img id="entire2" src="images/tango.png">
+        </div>
+        <div class="col-md-3">
+          <h3 class="text-white mb-3">単語帳機能</h3>
+          <p>保存された単語やフレーズはユーザーページで確認することができます。</br>
+          日本語訳の欄の「表示する」をクリックすると左側の英語の意味が表示されます。</p>
+        </div>
+        <div class="col-md-12 text-center mt-5">
+          <%= link_to 'ユーザー登録', signup_path, class: 'btn btn-lg btn-success' %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -10,7 +10,7 @@ $(document).on "turbolinks:load", ->
       received: (data) ->
          current_user_id = document.getElementById('nickname').getAttribute('data-num')
          if data["come_user"]
-             sentence = '<div class="come text-center text-success"><p class="come-message">「' + data["come_user"] + '」さんが入室しました。</p></div>'
+             sentence = '<div class="come text-center"><p class="come-message">「' + data["come_user"] + '」has entered the room.</p></div>'
              $('#add-message').append(sentence);
              if data["come_user_id"] != Number(current_user_id)
                  user_name = data["come_user"]
@@ -32,6 +32,16 @@ $(document).on "turbolinks:load", ->
                  
                  fromLang = 'ja'
                  toLang = 'en'
+                 
+                 String::bytes = ->
+                  encodeURIComponent(this).replace(/%../g, 'x').length
+                 
+                 len = message.length
+                 message_bytes = message.bytes()
+                 
+                 if len == message_bytes
+                   fromLang = "en"
+                   toLang = "ja"
                  
                  URL = 'https://translation.googleapis.com/language/translate/v2?key=' + gon.qrw_dfeoxjhummk876r + '&q=' + encodeURI(message) + '&source=' + fromLang + '&target=' + toLang
                  xhr = new XMLHttpRequest

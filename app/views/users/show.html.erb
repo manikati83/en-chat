@@ -1,12 +1,14 @@
-<div class="row border-bottom mb-5">
-  <h3 class="mr-5"><%= current_user.name %></h3>
-  <p>保存単語数: <%= @count %></p>
-</div>
-<div class="row">
-  <div class="col-lg-3">
-    
+<div class="container">
+  <div class="row border-bottom mb-5">
+    <h3 class="mr-5"><%= current_user.name %></h3>
+    <p>保存単語数: <%= @count %></p>
   </div>
-  <div class="col-lg-8">
-    <%= render 'users/words', words: @words %>
+  <div class="row">
+    <div class="col-lg-3">
+      
+    </div>
+    <div class="col-lg-8">
+      <%= render 'users/words', words: @words %>
+    </div>
   </div>
 </div>

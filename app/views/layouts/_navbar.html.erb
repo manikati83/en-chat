@@ -1,8 +1,10 @@
 <header class="mb-4">
   <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #A1887F">
-    <%= link_to 'En-chat', root_path, class: 'navbar-brand' %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+    <%= link_to 'En-chat', root_path, class: 'navbar-brand', 'data-turbolinks': false %>
+    <% unless current_page?(chat_path) %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
+    <% end %>
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
@@ -12,7 +14,7 @@
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
-              <li class="dropdown-item"><%= link_to 'My profile', user_path(current_user) %></li>
+              <li class="dropdown-item"><%= link_to 'マイページ', user_path(current_user), 'data-turbolinks': false %></li>
               <li class="dropdown-divider"></li>
               <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
             </ul>

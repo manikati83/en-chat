@@ -38,6 +38,11 @@
 }
 
 
+.come-message{
+  color: #9966FF;
+  font-family: sans-serif;
+}
+
 
 /* 届いたメッセージ*/
 .balloon6 {
@@ -48,8 +53,8 @@
 
 .balloon6 .user-name {
   float: left;
-  margin-right: -50px;
-  width: 40px;
+  margin-right: -40px;
+  width: 70px;
 }
 
 .balloon6 .chatting {
