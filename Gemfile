@@ -57,6 +57,12 @@ gem 'jquery-rails'
 gem 'gon'
 gem 'dotenv-rails'
 
+#group :production do
+#  gem 'pg', '>= 0.18', '< 2.0'
+#end
+
+gem 'mini_racer'
+
 group :production do
-  gem 'pg', '>= 0.18', '< 2.0'
+  gem 'unicorn', '5.4.1'
 end
