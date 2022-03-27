@@ -61,8 +61,6 @@ gem 'dotenv-rails'
 #  gem 'pg', '>= 0.18', '< 2.0'
 #end
 
-gem 'mini_racer'
-
 group :production do
   gem 'unicorn', '5.4.1'
 end
