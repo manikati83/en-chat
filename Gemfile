@@ -58,5 +58,5 @@ gem 'gon'
 gem 'dotenv-rails'
 
 group :production do
-  gem 'unicorn', '5.4.1'
+  gem 'pg', '>= 0.18', '< 2.0'
 end
